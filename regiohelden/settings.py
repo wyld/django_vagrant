@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'rest_framework',
 
     'pages',
     'accounts',
@@ -178,6 +179,16 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/login/'
 
 SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

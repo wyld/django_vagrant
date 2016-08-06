@@ -2,3 +2,4 @@ Django
 psycopg2
 django-allauth
 django-localflavor
+djangorestframework

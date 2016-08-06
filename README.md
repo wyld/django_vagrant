@@ -12,3 +12,9 @@ And once you are in:
 ```
 
 Then you should be able to navigate to http://localhost:8000/ on the host system to interact with the application.
+
+You can also run tests:
+
+```
+python manage.py test
+```

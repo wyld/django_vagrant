@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
-{% load socialaccount %}
+{% load socialaccount i18n %}
 
 {% block content %}
-	<a class="btn btn-lg btn-default" href="{% provider_login_url "google" %}">Login via Google</a>
+	<a class="btn btn-lg btn-default" href="{% provider_login_url "google" %}">{% trans "Login via Google" %}</a>
 {% endblock %}

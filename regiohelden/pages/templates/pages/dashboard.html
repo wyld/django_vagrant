@@ -23,7 +23,9 @@
 					<td>{{ user.last_name }}</td>
 					<td>{{ user.iban }}</td>
 					<td>{{ user.creator.username }}</td>
-					<td></td>
+					<td><a ng-click="deleteUser(user)" 
+						class="btn btn-default btn-danger" href="#" 
+						ng-if="currentUser == user.creator.id">Delete</a></td>
 				</tr>
 				{% endverbatim %}
 			</tbody>
@@ -40,4 +42,9 @@
 <script src="{% static "js/dashboard/users.service.js" %}"></script>
 <script src="{% static "js/dashboard/users.controller.js" %}"></script>
 <script src="{% static "js/dashboard/user-form.directive.js" %}"></script>
+<script type="text/javascript">
+  angular.module('usersApp').constant("Constants", {
+    currentUser: '{{ request.user.id }}'
+  });
+</script>
 {% endblock %}

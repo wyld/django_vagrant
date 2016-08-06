@@ -7,7 +7,12 @@ function usersService($http) {
     return {
         getUsersList: getUsersList,
         addUser: addUser,
+        deleteUser: deleteUser
     };
+
+    function getUserUrl(user) {
+        return baseApiUrl + user.id + '/';
+    }
 
     function getUsersList() {
         return $http.get(baseApiUrl)
@@ -32,6 +37,18 @@ function usersService($http) {
                 data.errors = result.data;
 
                 return data;
+            });
+    }
+
+    function deleteUser(user) {
+        var userUrl = getUserUrl(user);
+
+        return $http.delete(userUrl)
+            .then(function(result) {
+                return {success: true}
+            },
+            function(result){
+                return {success: false}
             });
     }
 }

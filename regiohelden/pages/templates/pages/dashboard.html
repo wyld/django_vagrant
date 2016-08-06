@@ -3,28 +3,30 @@
 
 
 {% block content %}
-	<table class="table" ng-app="usersApp" ng-controller="usersController">
-		<thead>
-			<tr>
-				<th>{% trans "First name" %}</th>
-				<th>{% trans "Last name" %}</th>
-				<th>{% trans "IBAN" %}</th>
-				<th>{% trans "Creator" %}</th>
-				<th>{% trans "Operations" %}</th>
-		    </tr>
-		</thead>
-		<tbody>
-			{% verbatim %}
-			<tr ng-repeat="user in users">
-				<td>{{ user.first_name }}</td>
-				<td>{{ user.last_name }}</td>
-				<td>{{ user.iban }}</td>
-				<td>{{ user.creator.username }}</td>
-				<td></td>
-			</tr>
-			{% endverbatim %}
-		</tbody>
-	</table>
+	<div class="ng-cloak" ng-app="usersApp" ng-controller="usersController">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>{% trans "First name" %}</th>
+					<th>{% trans "Last name" %}</th>
+					<th>{% trans "IBAN" %}</th>
+					<th>{% trans "Creator" %}</th>
+					<th>{% trans "Operations" %}</th>
+			    </tr>
+			</thead>
+			<tbody>
+				{% verbatim %}
+				<tr ng-repeat="user in users">
+					<td>{{ user.first_name }}</td>
+					<td>{{ user.last_name }}</td>
+					<td>{{ user.iban }}</td>
+					<td>{{ user.creator.username }}</td>
+					<td></td>
+				</tr>
+				{% endverbatim %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}
 
 {% block extra_js %}

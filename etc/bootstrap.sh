@@ -13,7 +13,7 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 echo '##########'
 echo 'Updating the world'
 echo '##########'
-#apt-get update -y
+apt-get update -y
 
 echo '##########'
 echo 'Installing python and pip'

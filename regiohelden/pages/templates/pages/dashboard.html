@@ -4,7 +4,9 @@
 
 {% block content %}
 	<div class="ng-cloak" ng-app="usersApp" ng-controller="usersController">
-		<a ng-click="showAddUser()" class="btn btn-default btn-primary pull-right" href="#">Add user</a>
+		<a ng-hide="formVisible" ng-click="addUser()" class="btn btn-default btn-primary pull-right" href="#">Add user</a>
+
+		<user-form visible="formVisible" form-user="formUser" callback="addorUpdateUserCallback(user)"></user-form>
 
 		<table class="table">
 			<thead>
@@ -23,15 +25,19 @@
 					<td>{{ user.last_name }}</td>
 					<td>{{ user.iban }}</td>
 					<td>{{ user.creator.username }}</td>
-					<td><a ng-click="deleteUser(user)" 
+					<td>
+						<a ng-click="editUser(user)" 
+						class="btn btn-default btn-warning" href="#" 
+						ng-show="currentUser == user.creator.id && !formVisible">Edit</a>
+
+						<a ng-click="deleteUser(user)" 
 						class="btn btn-default btn-danger" href="#" 
-						ng-if="currentUser == user.creator.id">Delete</a></td>
+						ng-show="currentUser == user.creator.id">Delete</a>
+					</td>
 				</tr>
 				{% endverbatim %}
 			</tbody>
 		</table>
-
-		<user-form visible="formVisible" editedUserData="editedUserData" editedUserId="editedUserId" callback="addUserCallback(user)"></user-form>
 	</div>
 {% endblock %}
 

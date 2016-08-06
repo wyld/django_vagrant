@@ -8,24 +8,34 @@ function userForm(usersService) {
         link: link,
         scope: {
             visible: '=',
-            editedUserData: '=',
-            editedUserId: '=',
+            formUser: '=',
             callback: '&'
         }
     };
 
     function link($scope) {
-        $scope.formSubmit = function(editedUserId, editedUserData){
-            editedUserData.submitted = true;
-            if (!editedUserId) {
-                usersService.addUser(editedUserData).then(function(data){
+        $scope.formSubmit = function(formUser){
+            formUser.submitted = true;
+            if (!formUser.id) {
+                usersService.addUser(formUser).then(function(data){
                     if (data.errors) {
-                        editedUserData.errors = {};
+                        formUser.errors = {};
                         angular.forEach(data.errors, function(value, key){
-                            editedUserData.errors[key] = value;
+                            formUser.errors[key] = value;
                         })
                     } else {
-                        console.log($scope.callback);
+                        $scope.callback({user: data});
+                        $scope.visible = false;
+                    }
+                })
+            } else {
+                usersService.updateUser(formUser).then(function(data){
+                    if (data.errors) {
+                        formUser.errors = {};
+                        angular.forEach(data.errors, function(value, key){
+                            formUser.errors[key] = value;
+                        })
+                    } else {
                         $scope.callback({user: data});
                         $scope.visible = false;
                     }
@@ -33,11 +43,15 @@ function userForm(usersService) {
             }
         }
 
+        $scope.formCancel = function() {
+            $scope.visible = false;
+        }
+
         $scope.formTitle = function(){
-            if (!$scope.editedUserId) {
-                return 'Add user';
+            if ($scope.formUser && $scope.formUser.id) {
+                return 'Edit user';
             }
-            return 'Edit user';
+            return 'Add user';
         }
     }
 }

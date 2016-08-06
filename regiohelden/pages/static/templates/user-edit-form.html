@@ -1,26 +1,27 @@
-<div class="panel panel-default" ng-if="visible">
+<div class="panel panel-default" ng-show="visible">
   <div class="panel-heading" ng-bind="formTitle()"></div>
   <div class="panel-body">
     <form>
 	  <div class="form-group" 
-	  ng-class="{'has-success': editedUserData.submitted && !editedUserData.errors.first_name, 'has-error': editedUserData.errors.first_name}">
+	  ng-class="{'has-success': formUser.submitted && !formUser.errors.first_name, 'has-error': formUser.errors.first_name}">
 	    <label>First name</label>
-	    <input type="text" class="form-control" placeholder="First name" ng-model="editedUserData.first_name">
-	    <span class="help-block" ng-bind="editedUserData.errors.first_name"></span>
+	    <input type="text" class="form-control" placeholder="First name" ng-model="formUser.first_name">
+	    <span class="help-block" ng-bind="formUser.errors.first_name"></span>
 	  </div>
 	  <div class="form-group"
-	  ng-class="{'has-success': editedUserData.submitted && !editedUserData.errors.last_name, 'has-error': editedUserData.errors.last_name}">
+	  ng-class="{'has-success': formUser.submitted && !formUser.errors.last_name, 'has-error': formUser.errors.last_name}">
 	    <label>Last name</label>
-	    <input type="text" class="form-control" placeholder="Last name" ng-model="editedUserData.last_name">
-	    <span class="help-block" ng-bind="editedUserData.errors.last_name"></span>
+	    <input type="text" class="form-control" placeholder="Last name" ng-model="formUser.last_name">
+	    <span class="help-block" ng-bind="formUser.errors.last_name"></span>
 	  </div>
 	  <div class="form-group"
-	  ng-class="{'has-success': editedUserData.submitted && !editedUserData.errors.iban, 'has-error': editedUserData.errors.iban}">
+	  ng-class="{'has-success': formUser.submitted && !formUser.errors.iban, 'has-error': formUser.errors.iban}">
 	    <label>IBAN</label>
-	    <input type="text" class="form-control" placeholder="IBAN" ng-model="editedUserData.iban">
-	    <span class="help-block" ng-bind="editedUserData.errors.iban"></span>
+	    <input type="text" class="form-control" placeholder="IBAN" ng-model="formUser.iban">
+	    <span class="help-block" ng-bind="formUser.errors.iban"></span>
 	  </div>
-	  <button type="submit" class="btn btn-default" ng-click="formSubmit(editedUserId, editedUserData)">Submit</button>
+	  <button type="submit" class="btn btn-default btn-success" ng-click="formSubmit(formUser)">Submit</button>
+	  <button type="cancel" class="btn btn-default" ng-click="formCancel()">Cancel</button>
 	</form>
   </div>
 </div>

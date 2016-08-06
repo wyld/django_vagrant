@@ -7,6 +7,7 @@ function usersService($http) {
     return {
         getUsersList: getUsersList,
         addUser: addUser,
+        updateUser: updateUser,
         deleteUser: deleteUser
     };
 
@@ -21,14 +22,34 @@ function usersService($http) {
             });
     }
 
-    function addUser(userData) {
+    function addUser(user) {
         var data = {
-            first_name: userData.first_name,
-            last_name: userData.last_name,
-            iban: userData.iban
+            first_name: user.first_name,
+            last_name: user.last_name,
+            iban: user.iban
         };
 
         return $http.post(baseApiUrl, data)
+            .then(function(result) {
+                return result.data;
+            },
+            function(result){
+                var data = {};
+                data.errors = result.data;
+
+                return data;
+            });
+    }
+
+    function updateUser(user) {
+        var userUrl = getUserUrl(user);
+        var data = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            iban: user.iban
+        };
+
+        return $http.patch(userUrl, data)
             .then(function(result) {
                 return result.data;
             },

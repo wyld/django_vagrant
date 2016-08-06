@@ -14,7 +14,8 @@ Vagrant::Config.run do |config|
 	# an identifier, the second is the path on the guest to mount the
 	# folder, and the third is the path on the host to the actual folder.
 	config.vm.share_folder "regiohelden", "/home/vagrant/regiohelden", "regiohelden"
+	config.vm.share_folder "regiohelden-etc", "/home/vagrant/etc", "etc"
 	
 	# Enable provisioning with a shell script.
-	config.vm.provision :shell, path: "bootstrap.sh"
+	config.vm.provision :shell, path: "etc/bootstrap.sh"
 end

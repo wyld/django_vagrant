@@ -13,7 +13,7 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 echo '##########'
 echo 'Updating the world'
 echo '##########'
-apt-get update -y
+#apt-get update -y
 
 echo '##########'
 echo 'Installing python and pip'
@@ -38,6 +38,8 @@ fi
 su - vagrant -c "/usr/local/bin/virtualenv $VIRTUALENV_DIR --python=/usr/bin/python3 && \
     echo $PROJECT_DIR > $VIRTUALENV_DIR/.project && \
     $VIRTUALENV_DIR/bin/pip install -r $PROJECT_DIR/requirements.txt"
+
+cp -p ~vagrant/etc/bashrc ~vagrant/.bashrc
 
 echo "# Virtualenv settings" >> ~vagrant/.bashrc
 echo "export WORKON_HOME=~vagrant/.virtualenvs" >> ~vagrant/.bashrc

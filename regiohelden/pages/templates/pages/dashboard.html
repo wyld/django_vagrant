@@ -1,5 +1,36 @@
 {% extends "pages/base.html" %}
+{% load i18n staticfiles %}
+
 
 {% block content %}
-	Logged in
+	<table class="table" ng-app="usersApp" ng-controller="usersController">
+		<thead>
+			<tr>
+				<th>{% trans "First name" %}</th>
+				<th>{% trans "Last name" %}</th>
+				<th>{% trans "IBAN" %}</th>
+				<th>{% trans "Creator" %}</th>
+				<th>{% trans "Operations" %}</th>
+		    </tr>
+		</thead>
+		<tbody>
+			{% verbatim %}
+			<tr ng-repeat="user in users">
+				<td>{{ user.first_name }}</td>
+				<td>{{ user.last_name }}</td>
+				<td>{{ user.iban }}</td>
+				<td>{{ user.creator.username }}</td>
+				<td></td>
+			</tr>
+			{% endverbatim %}
+		</tbody>
+	</table>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+<script src="{% static "js/dashboard/users.app.js" %}"></script>
+<script src="{% static "js/dashboard/users.service.js" %}"></script>
+<script src="{% static "js/dashboard/users.controller.js" %}"></script>
 {% endblock %}

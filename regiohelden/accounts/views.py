@@ -11,3 +11,6 @@ class UserViewSet(viewsets.ModelViewSet):
         OnlyCreatorCanModify)
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)

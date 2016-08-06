@@ -4,6 +4,8 @@
 
 {% block content %}
 	<div class="ng-cloak" ng-app="usersApp" ng-controller="usersController">
+		<a ng-click="showAddUser()" class="btn btn-default btn-primary pull-right" href="#">Add user</a>
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -26,6 +28,8 @@
 				{% endverbatim %}
 			</tbody>
 		</table>
+
+		<user-form visible="formVisible" editedUserData="editedUserData" editedUserId="editedUserId" callback="addUserCallback(user)"></user-form>
 	</div>
 {% endblock %}
 
@@ -35,4 +39,5 @@
 <script src="{% static "js/dashboard/users.app.js" %}"></script>
 <script src="{% static "js/dashboard/users.service.js" %}"></script>
 <script src="{% static "js/dashboard/users.controller.js" %}"></script>
+<script src="{% static "js/dashboard/user-form.directive.js" %}"></script>
 {% endblock %}

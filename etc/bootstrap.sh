@@ -50,3 +50,4 @@ echo "workon $VIRTUALENV_NAME" >> ~vagrant/.bashrc
 chmod a+x $PROJECT_DIR/manage.py
 
 su - vagrant -c "source $VIRTUALENV_DIR/bin/activate && cd $PROJECT_DIR && ./manage.py migrate"
+su - vagrant -c "source $VIRTUALENV_DIR/bin/activate && cd $PROJECT_DIR && ./manage.py loaddata initial.json"

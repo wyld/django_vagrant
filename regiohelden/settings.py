@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
+    'pages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -160,6 +168,15 @@ EMAIL_SUBJECT_PREFIX = '[regiohelden] '
 
 INTERNAL_IPS = ['127.0.0.1', '10.0.2.2']
 
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL = '/login/'
+
+SITE_ID = 1
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
